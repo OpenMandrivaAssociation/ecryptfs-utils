@@ -6,12 +6,13 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 61
+Version: 63
 Release: %mkrel 1
-Source0: http://ufpr.dl.sourceforge.net/sourceforge/ecryptfs/%{name}-%{version}.tar.bz2
+Source0: http://launchpad.net/ecryptfs/trunk/63/+download/%{name}-%{version}.tar.gz
+Source1: %{SOURCE0}.asc
 License: GPLv2+
 Group: System/Kernel and hardware
-Url: http://ecryptfs.sourceforge.net/
+Url: https://launchpad.net/ecryptfs
 BuildRequires: openssl-devel
 BuildRequires: libkeyutils-devel
 BuildRequires: libgcrypt-devel
