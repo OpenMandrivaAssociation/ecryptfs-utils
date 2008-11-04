@@ -12,8 +12,10 @@ Source0: http://ufpr.dl.sourceforge.net/sourceforge/ecryptfs/%{name}-%{version}.
 License: GPLv2+
 Group: System/Kernel and hardware
 Url: http://ecryptfs.sourceforge.net/
+BuildRequires: openssl-devel
 BuildRequires: libkeyutils-devel
 BuildRequires: libgcrypt-devel
+BuildRequires: libpam-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 
