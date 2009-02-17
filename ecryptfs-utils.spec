@@ -1,3 +1,4 @@
+%define Werror_cflags %nil
 
 %define libmajor 0
 %define libname %mklibname ecryptfs %libmajor
@@ -6,7 +7,7 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 63
+Version: 70
 Release: %mkrel 1
 Source0: http://launchpad.net/ecryptfs/trunk/63/+download/%{name}-%{version}.tar.gz
 Source1: %{SOURCE0}.asc
@@ -74,12 +75,24 @@ Provides: libecryptfs-static-devel = %version-%release
 %description -n %libnamestaticdevel
 eCryptfs static library development files.
 
+%package -n python-%{name}
+Summary: eCryptfs Python library
+Group: Development/C
+Requires: python-devel
+Requires: %libnamedevel = %version
+Requires: %name = %version
+
+%description -n python-%{name}
+eCryptfs Python library.
+
 
 %prep
 %setup -q
 
 %build
-%configure2_5x
+%configure2_5x --disable-rpath
+sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
+sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %make
 
 %install
@@ -93,8 +106,9 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %_docdir/%name/README
 %_docdir/%name/ecryptfs-faq.html
-%_docdir/%name/ecryptfs-pam-doc.txt
+%_docdir/%name/*.txt
 /sbin/mount.ecryptfs
+/sbin/umount.ecryptfs
 /sbin/mount.ecryptfs_private
 /sbin/umount.ecryptfs_private
 %_bindir/ecryptfs-add-passphrase
@@ -107,8 +121,6 @@ rm -rf %{buildroot}
 %_bindir/ecryptfs-umount-private
 %_bindir/ecryptfs-unwrap-passphrase
 %_bindir/ecryptfs-wrap-passphrase
-%_bindir/ecryptfs-zombie-kill
-%_bindir/ecryptfs-zombie-list
 %_bindir/ecryptfsd
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
@@ -119,8 +131,6 @@ rm -rf %{buildroot}
 %_mandir/man1/ecryptfs-umount-private.1.*
 %_mandir/man1/ecryptfs-unwrap-passphrase.1.*
 %_mandir/man1/ecryptfs-wrap-passphrase.1.*
-%_mandir/man1/ecryptfs-zombie-kill.1.*
-%_mandir/man1/ecryptfs-zombie-list.1.*
 %_mandir/man1/mount.ecryptfs_private.1.*
 %_mandir/man1/umount.ecryptfs_private.1.*
 %_mandir/man7/ecryptfs.7.*
@@ -147,5 +157,14 @@ rm -rf %{buildroot}
 
 %files -n %libnamestaticdevel
 %defattr(-,root,root)
-%_libdir/libecryptfs.a
 %_libdir/libecryptfs.la
+
+%files -n python-%name
+%{py_puresitedir}/%{name}/_libecryptfs.la
+%{py_puresitedir}/%{name}/_libecryptfs.so
+%{py_puresitedir}/%{name}/_libecryptfs.so.0
+%{py_puresitedir}/%{name}/_libecryptfs.so.0.0.0
+%{py_puresitedir}/%{name}/libecryptfs.py
+%{py_puresitedir}/%{name}/libecryptfs.pyc
+%{py_puresitedir}/%{name}/libecryptfs.pyo
+
