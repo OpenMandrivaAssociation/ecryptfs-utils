@@ -20,7 +20,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: libpam-devel
 BuildRequires: python-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
-
+Requires: python-%{name} = %{version}
 
 %description
 eCryptfs is a POSIX-compliant enterprise-class stacked cryptographic
@@ -161,11 +161,6 @@ rm -rf %{buildroot}
 %_libdir/libecryptfs.la
 
 %files -n python-%name
-%{py_puresitedir}/%{name}/_libecryptfs.la
-%{py_puresitedir}/%{name}/_libecryptfs.so
-%{py_puresitedir}/%{name}/_libecryptfs.so.0
-%{py_puresitedir}/%{name}/_libecryptfs.so.0.0.0
 %{py_puresitedir}/%{name}/libecryptfs.py
 %{py_puresitedir}/%{name}/libecryptfs.pyc
 %{py_puresitedir}/%{name}/libecryptfs.pyo
-
