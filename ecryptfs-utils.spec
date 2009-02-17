@@ -18,6 +18,7 @@ BuildRequires: openssl-devel
 BuildRequires: libkeyutils-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: libpam-devel
+BuildRequires: python-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 
 
