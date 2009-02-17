@@ -164,3 +164,4 @@ rm -rf %{buildroot}
 %{py_puresitedir}/%{name}/libecryptfs.py
 %{py_puresitedir}/%{name}/libecryptfs.pyc
 %{py_puresitedir}/%{name}/libecryptfs.pyo
+%{py_platsitedir}/ecryptfs-utils/_libecryptfs.*
