@@ -7,9 +7,9 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 70
+Version: 71
 Release: %mkrel 1
-Source0: http://launchpad.net/ecryptfs/trunk/63/+download/%{name}-%{version}.tar.gz
+Source0: http://launchpad.net/ecryptfs/%{name}_%{version}.orig.tar.gz
 Source1: %{SOURCE0}.asc
 License: GPLv2+
 Group: System/Kernel and hardware
@@ -123,6 +123,7 @@ rm -rf %{buildroot}
 %_bindir/ecryptfs-unwrap-passphrase
 %_bindir/ecryptfs-wrap-passphrase
 %_bindir/ecryptfsd
+%_bindir/ecryptfs-setup-swap
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
 %_mandir/man1/ecryptfs-insert-wrapped-passphrase-into-keyring.1.*
