@@ -7,7 +7,7 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 71
+Version: 74
 Release: %mkrel 1
 Source0: http://launchpad.net/ecryptfs/%{name}_%{version}.orig.tar.gz
 Source1: %{SOURCE0}.asc
@@ -79,8 +79,8 @@ eCryptfs static library development files.
 %package -n python-%{name}
 Summary: eCryptfs Python library
 Group: Development/C
-Requires: python-devel
-Requires: %libnamedevel = %version
+#Requires: python-devel
+#Requires: %libnamedevel = %version
 Requires: %name = %version
 
 %description -n python-%{name}
@@ -100,11 +100,16 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 rm -rf %{buildroot}
 %makeinstall_std
 
+# only needed to update-notifier, that is a ubuntu-only thing, afaik
+rm -f %{buildroot}/usr/share/ecryptfs-record-passphrase
+mkdir %{buildroot}/usr/share/applications/
+mv    %{buildroot}/usr/share/*desktop %{buildroot}/usr/share/applications/
 %clean
 rm -rf %{buildroot}
 
 %files
 %defattr(-,root,root)
+%_datadir/applications/*desktop
 %_docdir/%name/README
 %_docdir/%name/ecryptfs-faq.html
 %_docdir/%name/*.txt
@@ -124,6 +129,8 @@ rm -rf %{buildroot}
 %_bindir/ecryptfs-wrap-passphrase
 %_bindir/ecryptfsd
 %_bindir/ecryptfs-setup-swap
+%_bindir/ecryptfs-dot-private
+%_bindir/ecryptfs-rewrite-file
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
 %_mandir/man1/ecryptfs-insert-wrapped-passphrase-into-keyring.1.*
@@ -133,6 +140,7 @@ rm -rf %{buildroot}
 %_mandir/man1/ecryptfs-umount-private.1.*
 %_mandir/man1/ecryptfs-unwrap-passphrase.1.*
 %_mandir/man1/ecryptfs-wrap-passphrase.1.*
+%_mandir/man1/ecryptfs-rewrite-file.1.*
 %_mandir/man1/mount.ecryptfs_private.1.*
 %_mandir/man1/umount.ecryptfs_private.1.*
 %_mandir/man7/ecryptfs.7.*
