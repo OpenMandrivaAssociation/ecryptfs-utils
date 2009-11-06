@@ -7,9 +7,9 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 74
+Version: 81
 Release: %mkrel 1
-Source0: http://launchpad.net/ecryptfs/%{name}_%{version}.orig.tar.gz
+Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Source1: %{SOURCE0}.asc
 License: GPLv2+
 Group: System/Kernel and hardware
@@ -19,6 +19,7 @@ BuildRequires: libkeyutils-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: libpam-devel
 BuildRequires: python-devel
+BuildRequires: nss-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: python-%{name} = %{version}
 
@@ -91,7 +92,7 @@ eCryptfs Python library.
 %setup -q
 
 %build
-%configure2_5x --disable-rpath
+%configure2_5x 
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %make
@@ -103,7 +104,8 @@ rm -rf %{buildroot}
 # only needed to update-notifier, that is a ubuntu-only thing, afaik
 rm -f %{buildroot}/usr/share/ecryptfs-record-passphrase
 mkdir %{buildroot}/usr/share/applications/
-mv    %{buildroot}/usr/share/*desktop %{buildroot}/usr/share/applications/
+mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/applications/
+
 %clean
 rm -rf %{buildroot}
 
@@ -129,7 +131,6 @@ rm -rf %{buildroot}
 %_bindir/ecryptfs-wrap-passphrase
 %_bindir/ecryptfsd
 %_bindir/ecryptfs-setup-swap
-%_bindir/ecryptfs-dot-private
 %_bindir/ecryptfs-rewrite-file
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
@@ -143,10 +144,16 @@ rm -rf %{buildroot}
 %_mandir/man1/ecryptfs-rewrite-file.1.*
 %_mandir/man1/mount.ecryptfs_private.1.*
 %_mandir/man1/umount.ecryptfs_private.1.*
+%_mandir/man1/ecryptfs-setup-swap.1.*
+%_mandir/man1/ecryptfs-stat.1.*
 %_mandir/man7/ecryptfs.7.*
 %_mandir/man8/ecryptfs-manager.8.*
 %_mandir/man8/ecryptfsd.8.*
 %_mandir/man8/mount.ecryptfs.8.*
+%_mandir/man8/umount.ecryptfs.8.*
+%dir %_datadir/ecryptfs-utils
+%_datadir/ecryptfs-utils/ecryptfs-mount-private.txt
+%_datadir/ecryptfs-utils/ecryptfs-record-passphrase
 
 %files -n pam_ecryptfs
 %defattr(-,root,root)
