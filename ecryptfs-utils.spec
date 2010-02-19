@@ -20,6 +20,7 @@ BuildRequires: libgcrypt-devel
 BuildRequires: libpam-devel
 BuildRequires: python-devel
 BuildRequires: nss-devel
+BuildRequires: intltool
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: python-%{name} = %{version}
 
