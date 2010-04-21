@@ -8,9 +8,10 @@
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
 Version: 83
-Release: %mkrel 1
+Release: %mkrel 2
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Source1: %{SOURCE0}.asc
+Patch0: ecryptfs-utils_83-fix-link.patch
 License: GPLv2+
 Group: System/Kernel and hardware
 Url: https://launchpad.net/ecryptfs
@@ -88,11 +89,12 @@ Requires: %name = %version
 %description -n python-%{name}
 eCryptfs Python library.
 
-
 %prep
 %setup -q
+%patch0 -p0
 
 %build
+autoreconf -fi
 %configure2_5x 
 sed -i 's|^hardcode_libdir_flag_spec=.*|hardcode_libdir_flag_spec=""|g' libtool
 sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
