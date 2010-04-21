@@ -22,6 +22,7 @@ BuildRequires: libpam-devel
 BuildRequires: python-devel
 BuildRequires: nss-devel
 BuildRequires: intltool
+BuildRequires: glib2-devel
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: python-%{name} = %{version}
 
