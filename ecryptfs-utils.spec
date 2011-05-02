@@ -7,8 +7,8 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 83
-Release: %mkrel 3
+Version: 87
+Release: %mkrel 1
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Source1: %{SOURCE0}.asc
 Patch0: ecryptfs-utils_83-fix-link.patch
@@ -136,6 +136,7 @@ rm -rf %{buildroot}
 %_bindir/ecryptfsd
 %_bindir/ecryptfs-setup-swap
 %_bindir/ecryptfs-rewrite-file
+%_bindir/ecryptfs-recover-private
 %_bindir/ecryptfs-migrate-home
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
@@ -147,6 +148,7 @@ rm -rf %{buildroot}
 %_mandir/man1/ecryptfs-unwrap-passphrase.1.*
 %_mandir/man1/ecryptfs-wrap-passphrase.1.*
 %_mandir/man1/ecryptfs-rewrite-file.1.*
+%_mandir/man1/ecryptfs-recover-private.1.*
 %_mandir/man1/mount.ecryptfs_private.1.*
 %_mandir/man1/umount.ecryptfs_private.1.*
 %_mandir/man1/ecryptfs-setup-swap.1.*
