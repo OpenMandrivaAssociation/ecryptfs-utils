@@ -7,10 +7,9 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 87
-Release: %mkrel 1
+Version: 95
+Release: 1
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
-Source1: %{SOURCE0}.asc
 Patch0: ecryptfs-utils_83-fix-link.patch
 License: GPLv2+
 Group: System/Kernel and hardware
@@ -23,7 +22,6 @@ BuildRequires: python-devel
 BuildRequires: nss-devel
 BuildRequires: intltool
 BuildRequires: glib2-devel
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-buildroot
 Requires: python-%{name} = %{version}
 
 %description
@@ -102,7 +100,6 @@ sed -i 's|^runpath_var=LD_RUN_PATH|runpath_var=DIE_RPATH_DIE|g' libtool
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 # only needed to update-notifier, that is a ubuntu-only thing, afaik
@@ -110,11 +107,7 @@ rm -f %{buildroot}/usr/share/ecryptfs-record-passphrase
 mkdir %{buildroot}/usr/share/applications/
 mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/applications/
 
-%clean
-rm -rf %{buildroot}
-
 %files
-%defattr(-,root,root)
 %_datadir/applications/*desktop
 %_docdir/%name/README
 %_docdir/%name/ecryptfs-faq.html
@@ -126,6 +119,7 @@ rm -rf %{buildroot}
 %_bindir/ecryptfs-add-passphrase
 %_bindir/ecryptfs-insert-wrapped-passphrase-into-keyring
 %_bindir/ecryptfs-manager
+%_bindir/ecryptfs-verify
 %_bindir/ecryptfs-mount-private
 %_bindir/ecryptfs-rewrap-passphrase
 %_bindir/ecryptfs-setup-private
@@ -161,10 +155,10 @@ rm -rf %{buildroot}
 %dir %_datadir/ecryptfs-utils
 %_datadir/ecryptfs-utils/ecryptfs-mount-private.txt
 %_datadir/ecryptfs-utils/ecryptfs-record-passphrase
+%_datadir/ecryptfs-utils/ecryptfs-find
 %_datadir/locale/ca/LC_MESSAGES/ecryptfs-utils.mo
 
 %files -n pam_ecryptfs
-%defattr(-,root,root)
 /%_lib/security/pam_ecryptfs.so
 %_mandir/man8/pam_ecryptfs.8.*
 
@@ -175,13 +169,11 @@ rm -rf %{buildroot}
 %_libdir/libecryptfs.so.%libmajor.*
 
 %files -n %libnamedevel
-%defattr(-,root,root)
 %_includedir/ecryptfs.h
 %_libdir/libecryptfs.so
 %_libdir/pkgconfig/libecryptfs.pc
 
 %files -n %libnamestaticdevel
-%defattr(-,root,root)
 %_libdir/libecryptfs.la
 
 %files -n python-%name
