@@ -173,9 +173,6 @@ mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/application
 %_libdir/libecryptfs.so
 %_libdir/pkgconfig/libecryptfs.pc
 
-%files -n %libnamestaticdevel
-%_libdir/libecryptfs.la
-
 %files -n python-%name
 %{py_puresitedir}/%{name}/libecryptfs.py
 %{py_puresitedir}/%{name}/libecryptfs.pyc
