@@ -17,7 +17,7 @@ Url: https://launchpad.net/ecryptfs
 BuildRequires: openssl-devel
 BuildRequires: libkeyutils-devel
 BuildRequires: libgcrypt-devel
-BuildRequires: libpam-devel
+BuildRequires: pam-devel
 BuildRequires: python-devel
 BuildRequires: nss-devel
 BuildRequires: intltool
