@@ -7,7 +7,7 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 96
+Version: 99
 Release: 1
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Patch0: ecryptfs-utils_83-fix-link.patch
@@ -15,7 +15,7 @@ License: GPLv2+
 Group: System/Kernel and hardware
 Url: https://launchpad.net/ecryptfs
 BuildRequires: openssl-devel
-BuildRequires: libkeyutils-devel
+BuildRequires: keyutils-devel
 BuildRequires: libgcrypt-devel
 BuildRequires: pam-devel
 BuildRequires: python-devel
@@ -111,7 +111,7 @@ mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/application
 %_datadir/applications/*desktop
 %_docdir/%name/README
 %_docdir/%name/ecryptfs-faq.html
-%_docdir/%name/*.txt
+#%_docdir/%name/*.txt
 /sbin/mount.ecryptfs
 /sbin/umount.ecryptfs
 /sbin/mount.ecryptfs_private
