@@ -1,0 +1,54 @@
+--- src/key_mod/Makefile.am.link	2010-04-21 03:36:43.000000000 +0200
++++ src/key_mod/Makefile.am	2010-04-21 03:37:13.000000000 +0200
+@@ -17,27 +17,27 @@
+ 
+ libecryptfs_key_mod_openssl_la_SOURCES = ecryptfs_key_mod_openssl.c
+ libecryptfs_key_mod_openssl_la_CFLAGS = $(AM_CFLAGS) $(OPENSSL_CFLAGS)
+-libecryptfs_key_mod_openssl_la_LIBADD = $(OPENSSL_LIBS)
++libecryptfs_key_mod_openssl_la_LIBADD = $(OPENSSL_LIBS) $(top_builddir)/src/libecryptfs/libecryptfs.la
+ libecryptfs_key_mod_openssl_la_LDFLAGS = $(AM_LDFLAGS) -module -avoid-version -shared
+ 
+ libecryptfs_key_mod_pkcs11_helper_la_SOURCES = ecryptfs_key_mod_pkcs11_helper.c
+ libecryptfs_key_mod_pkcs11_helper_la_CFLAGS = $(AM_CFLAGS) $(PKCS11_HELPER_CFLAGS) $(OPENSSL_CFLAGS)
+-libecryptfs_key_mod_pkcs11_helper_la_LIBADD = $(PKCS11_HELPER_LIBS) $(OPENSSL_LIBS)
++libecryptfs_key_mod_pkcs11_helper_la_LIBADD = $(PKCS11_HELPER_LIBS) $(OPENSSL_LIBS) $(top_builddir)/src/libecryptfs/libecryptfs.la
+ libecryptfs_key_mod_pkcs11_helper_la_LDFLAGS = $(AM_LDFLAGS) -module -avoid-version -shared
+ 
+ libecryptfs_key_mod_tspi_la_SOURCES = ecryptfs_key_mod_tspi.c
+ libecryptfs_key_mod_tspi_la_CFLAGS = $(AM_CFLAGS) $(TSPI_CFLAGS)
+-libecryptfs_key_mod_tspi_la_LIBADD = $(TSPI_LIBS)
++libecryptfs_key_mod_tspi_la_LIBADD = $(TSPI_LIBS) $(top_builddir)/src/libecryptfs/libecryptfs.la
+ libecryptfs_key_mod_tspi_la_LDFLAGS = $(AM_LDFLAGS) -module -avoid-version -shared
+ 
+ libecryptfs_key_mod_gpg_la_SOURCES = ecryptfs_key_mod_gpg.c
+ libecryptfs_key_mod_gpg_la_CFLAGS = $(AM_CFLAGS) $(GPGME_CFLAGS)
+-libecryptfs_key_mod_gpg_la_LIBADD = $(GPGME_LIBS)
++libecryptfs_key_mod_gpg_la_LIBADD = $(GPGME_LIBS) $(top_builddir)/src/libecryptfs/libecryptfs.la
+ libecryptfs_key_mod_gpg_la_LDFLAGS = $(AM_LDFLAGS) -module -avoid-version -shared
+ 
+ libecryptfs_key_mod_passphrase_la_SOURCES = ecryptfs_key_mod_passphrase.c
+ libecryptfs_key_mod_passphrase_la_CFLAGS = $(AM_CFLAGS) $(LIBGCRYPT_CFLAGS)
+-libecryptfs_key_mod_passphrase_la_LIBADD = $(LIBGCRYPT_LIBS)
++libecryptfs_key_mod_passphrase_la_LIBADD = $(LIBGCRYPT_LIBS) $(top_builddir)/src/libecryptfs/libecryptfs.la
+ libecryptfs_key_mod_passphrase_la_LDFLAGS = $(AM_LDFLAGS) -module -avoid-version -shared
+ 
+ # Needed until libtool-2
+--- src/libecryptfs-swig/Makefile.am.link	2010-04-21 03:40:42.000000000 +0200
++++ src/libecryptfs-swig/Makefile.am	2010-04-21 03:40:57.000000000 +0200
+@@ -8,7 +8,7 @@
+ _libecryptfs_la_SOURCES = $(srcdir)/libecryptfs_wrap.c $(SWIG_SOURCES)
+ _libecryptfs_la_CFLAGS = $(SWIG_PYTHON_CPPFLAGS) -I$(top_srcdir)/src/include
+ _libecryptfs_la_LDFLAGS = -module
+-_libecryptfs_la_LIBADD = ../libecryptfs/.libs/libecryptfs.la
++_libecryptfs_la_LIBADD = $(top_builddir)/src/libecryptfs/libecryptfs.la $(PYTHON_LDFLAGS)
+ 
+ $(srcdir)/libecryptfs_wrap.c : $(SWIG_SOURCES)
+ 	$(SWIG) $(SWIG_PYTHON_OPT) -I$(top_srcdir)/src/include -o $@ $<
+--- src/Makefile.am.link	2010-04-21 03:41:33.000000000 +0200
++++ src/Makefile.am	2010-04-21 03:41:51.000000000 +0200
+@@ -10,4 +10,4 @@
+ 
+ MAINTAINERCLEANFILES = $(srcdir)/Makefile.in
+ 
+-SUBDIRS = key_mod libecryptfs utils daemon desktop include pam_ecryptfs libecryptfs-swig
++SUBDIRS = libecryptfs key_mod utils daemon desktop include pam_ecryptfs libecryptfs-swig
