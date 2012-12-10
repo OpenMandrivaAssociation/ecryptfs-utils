@@ -178,3 +178,74 @@ mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/application
 %{py_puresitedir}/%{name}/libecryptfs.pyc
 %{py_puresitedir}/%{name}/libecryptfs.pyo
 %{py_platsitedir}/ecryptfs-utils/_libecryptfs.*
+
+
+%changelog
+* Mon Jul 16 2012 Alexander Khrukin <akhrukin@mandriva.org> 99-1
++ Revision: 809810
+- version update 99
+
+* Fri Feb 24 2012 Alexander Khrukin <akhrukin@mandriva.org> 96-1
++ Revision: 780135
+- version update 96
+
+* Fri Dec 16 2011 Alexander Khrukin <akhrukin@mandriva.org> 95-1
++ Revision: 741982
+- la files removed
+- cooker BReq fix
+- version update 95
+
+* Mon May 02 2011 Guillaume Rousse <guillomovitch@mandriva.org> 87-1
++ Revision: 662315
+- new version
+
+* Wed Nov 03 2010 Michael Scherer <misc@mandriva.org> 83-3mdv2011.0
++ Revision: 592736
+- rebuild for python 2.7
+
+* Wed Apr 21 2010 Funda Wang <fwang@mandriva.org> 83-2mdv2010.1
++ Revision: 537321
+- BR glib2
+- fix linkage
+
+* Sat Feb 20 2010 Luis Daniel Lucio Quiroz <dlucio@mandriva.org> 83-1mdv2010.1
++ Revision: 508607
+- inttool as BR
+- new version
+
+* Fri Nov 06 2009 Frederik Himpe <fhimpe@mandriva.org> 81-1mdv2010.1
++ Revision: 462020
+- Update to new versio n81
+- Remove --disable-rpath configure option, it's unknown
+- BuildRequires nss-devel now
+- Fix file list
+
+* Sun May 03 2009 Michael Scherer <misc@mandriva.org> 74-1mdv2010.0
++ Revision: 370957
+- update to new version
+- remove uneeded requires on python-devel
+
+* Thu Mar 05 2009 Jérôme Soyer <saispo@mandriva.org> 71-1mdv2009.1
++ Revision: 348912
+- New upstream release
+
+* Tue Feb 17 2009 Jérôme Soyer <saispo@mandriva.org> 70-1mdv2009.1
++ Revision: 341986
+- Fix files section
+- Add BR
+- New upstream release
+
+* Tue Nov 04 2008 Gustavo De Nardin <gustavodn@mandriva.com> 63-1mdv2009.1
++ Revision: 299761
+- new project Url
+- new version 63 available from new Url
+- include tarball signature for verification
+
+* Tue Nov 04 2008 Gustavo De Nardin <gustavodn@mandriva.com> 61-1mdv2009.1
++ Revision: 299749
+- buildrequires openssl-devel
+- buildrequires libpam-devel for pam module
+- fixed the Url tag
+- initial Mandriva package of ecryptfs-utils
+- Created package structure for ecryptfs-utils.
+
