@@ -7,7 +7,7 @@
 
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
-Version: 99
+Version: 103
 Release: 1
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Patch0: ecryptfs-utils_83-fix-link.patch
@@ -132,6 +132,7 @@ mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/application
 %_bindir/ecryptfs-rewrite-file
 %_bindir/ecryptfs-recover-private
 %_bindir/ecryptfs-migrate-home
+%_bindir/ecryptfs-find
 %_mandir/man1/ecryptfs-add-passphrase.1.*
 %_mandir/man1/ecryptfs-generate-tpm-key.1.*
 %_mandir/man1/ecryptfs-insert-wrapped-passphrase-into-keyring.1.*
@@ -147,15 +148,17 @@ mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/application
 %_mandir/man1/umount.ecryptfs_private.1.*
 %_mandir/man1/ecryptfs-setup-swap.1.*
 %_mandir/man1/ecryptfs-stat.1.*
+%_mandir/man1/ecryptfs-find.1.*
+%_mandir/man1/ecryptfs-verify.1.*
 %_mandir/man7/ecryptfs.7.*
 %_mandir/man8/ecryptfs-manager.8.*
 %_mandir/man8/ecryptfsd.8.*
 %_mandir/man8/mount.ecryptfs.8.*
 %_mandir/man8/umount.ecryptfs.8.*
+%_mandir/man8/ecryptfs-migrate-home.8.*
 %dir %_datadir/ecryptfs-utils
 %_datadir/ecryptfs-utils/ecryptfs-mount-private.txt
 %_datadir/ecryptfs-utils/ecryptfs-record-passphrase
-%_datadir/ecryptfs-utils/ecryptfs-find
 %_datadir/locale/ca/LC_MESSAGES/ecryptfs-utils.mo
 
 %files -n pam_ecryptfs
