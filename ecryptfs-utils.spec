@@ -41,9 +41,9 @@ module component of eCryptfs is upstream in the Linux kernel.
 
 
 %package -n pam_ecryptfs
-Summary: eCryptfs PAM module
+Summary: ECryptfs PAM module
 Group: System/Libraries
-Requires: %name = %version
+Requires: %{name} = %{version}
 
 %description -n pam_ecryptfs
 eCryptfs PAM module to automatically mount a private cryptographic
@@ -51,7 +51,7 @@ directory.
 
 
 %package -n %libname
-Summary: eCryptfs library
+Summary: ECryptfs library
 Group: Development/C
 
 %description -n %libname
@@ -59,31 +59,31 @@ eCryptfs library.
 
 
 %package -n %libnamedevel
-Summary: eCryptfs library
+Summary: ECryptfs library
 Group: Development/C
-Requires: %libname = %version
-Provides: libecryptfs-devel = %version-%release
-Provides: %name-devel = %version-%release
+Requires: %libname = %{version}
+Provides: libecryptfs-devel = %{version}-%{release}
+Provides: %{name}-devel = %{version}-%{release}
 
 %description -n %libnamedevel
 eCryptfs development files.
 
 
 %package -n %libnamestaticdevel
-Summary: eCryptfs library
+Summary: ECryptfs library
 Group: Development/C
-Requires: %libnamedevel = %version
-Provides: libecryptfs-static-devel = %version-%release
+Requires: %libnamedevel = %{version}
+Provides: libecryptfs-static-devel = %{version}-%{release}
 
 %description -n %libnamestaticdevel
 eCryptfs static library development files.
 
 %package -n python-%{name}
-Summary: eCryptfs Python library
+Summary: ECryptfs Python library
 Group: Development/C
 #Requires: python-devel
 #Requires: %libnamedevel = %version
-Requires: %name = %version
+Requires: %{name} = %{version}
 
 %description -n python-%{name}
 eCryptfs Python library.
@@ -108,147 +108,78 @@ mkdir %{buildroot}/usr/share/applications/
 mv    %{buildroot}/usr/share/%{name}/*desktop %{buildroot}/usr/share/applications/
 
 %files
-%_datadir/applications/*desktop
-%_docdir/%name/README
-%_docdir/%name/ecryptfs-faq.html
+%{_datadir}/applications/*desktop
+%_docdir/%{name}/README
+%_docdir/%{name}/ecryptfs-faq.html
 #%_docdir/%name/*.txt
 /sbin/mount.ecryptfs
 /sbin/umount.ecryptfs
 /sbin/mount.ecryptfs_private
 /sbin/umount.ecryptfs_private
-%_bindir/ecryptfs-add-passphrase
-%_bindir/ecryptfs-insert-wrapped-passphrase-into-keyring
-%_bindir/ecryptfs-manager
-%_bindir/ecryptfs-verify
-%_bindir/ecryptfs-mount-private
-%_bindir/ecryptfs-rewrap-passphrase
-%_bindir/ecryptfs-setup-private
-%_bindir/ecryptfs-stat
-%_bindir/ecryptfs-umount-private
-%_bindir/ecryptfs-unwrap-passphrase
-%_bindir/ecryptfs-wrap-passphrase
-%_bindir/ecryptfsd
-%_bindir/ecryptfs-setup-swap
-%_bindir/ecryptfs-rewrite-file
-%_bindir/ecryptfs-recover-private
-%_bindir/ecryptfs-migrate-home
-%_bindir/ecryptfs-find
-%_mandir/man1/ecryptfs-add-passphrase.1.*
-%_mandir/man1/ecryptfs-generate-tpm-key.1.*
-%_mandir/man1/ecryptfs-insert-wrapped-passphrase-into-keyring.1.*
-%_mandir/man1/ecryptfs-mount-private.1.*
-%_mandir/man1/ecryptfs-rewrap-passphrase.1.*
-%_mandir/man1/ecryptfs-setup-private.1.*
-%_mandir/man1/ecryptfs-umount-private.1.*
-%_mandir/man1/ecryptfs-unwrap-passphrase.1.*
-%_mandir/man1/ecryptfs-wrap-passphrase.1.*
-%_mandir/man1/ecryptfs-rewrite-file.1.*
-%_mandir/man1/ecryptfs-recover-private.1.*
-%_mandir/man1/mount.ecryptfs_private.1.*
-%_mandir/man1/umount.ecryptfs_private.1.*
-%_mandir/man1/ecryptfs-setup-swap.1.*
-%_mandir/man1/ecryptfs-stat.1.*
-%_mandir/man1/ecryptfs-find.1.*
-%_mandir/man1/ecryptfs-verify.1.*
-%_mandir/man7/ecryptfs.7.*
-%_mandir/man8/ecryptfs-manager.8.*
-%_mandir/man8/ecryptfsd.8.*
-%_mandir/man8/mount.ecryptfs.8.*
-%_mandir/man8/umount.ecryptfs.8.*
-%_mandir/man8/ecryptfs-migrate-home.8.*
-%dir %_datadir/ecryptfs-utils
-%_datadir/ecryptfs-utils/ecryptfs-mount-private.txt
-%_datadir/ecryptfs-utils/ecryptfs-record-passphrase
-%_datadir/locale/ca/LC_MESSAGES/ecryptfs-utils.mo
+%{_bindir}/ecryptfs-add-passphrase
+%{_bindir}/ecryptfs-insert-wrapped-passphrase-into-keyring
+%{_bindir}/ecryptfs-manager
+%{_bindir}/ecryptfs-verify
+%{_bindir}/ecryptfs-mount-private
+%{_bindir}/ecryptfs-rewrap-passphrase
+%{_bindir}/ecryptfs-setup-private
+%{_bindir}/ecryptfs-stat
+%{_bindir}/ecryptfs-umount-private
+%{_bindir}/ecryptfs-unwrap-passphrase
+%{_bindir}/ecryptfs-wrap-passphrase
+%{_bindir}/ecryptfsd
+%{_bindir}/ecryptfs-setup-swap
+%{_bindir}/ecryptfs-rewrite-file
+%{_bindir}/ecryptfs-recover-private
+%{_bindir}/ecryptfs-migrate-home
+%{_bindir}/ecryptfs-find
+%{_mandir}/man1/ecryptfs-add-passphrase.1.*
+%{_mandir}/man1/ecryptfs-generate-tpm-key.1.*
+%{_mandir}/man1/ecryptfs-insert-wrapped-passphrase-into-keyring.1.*
+%{_mandir}/man1/ecryptfs-mount-private.1.*
+%{_mandir}/man1/ecryptfs-rewrap-passphrase.1.*
+%{_mandir}/man1/ecryptfs-setup-private.1.*
+%{_mandir}/man1/ecryptfs-umount-private.1.*
+%{_mandir}/man1/ecryptfs-unwrap-passphrase.1.*
+%{_mandir}/man1/ecryptfs-wrap-passphrase.1.*
+%{_mandir}/man1/ecryptfs-rewrite-file.1.*
+%{_mandir}/man1/ecryptfs-recover-private.1.*
+%{_mandir}/man1/mount.ecryptfs_private.1.*
+%{_mandir}/man1/umount.ecryptfs_private.1.*
+%{_mandir}/man1/ecryptfs-setup-swap.1.*
+%{_mandir}/man1/ecryptfs-stat.1.*
+%{_mandir}/man1/ecryptfs-find.1.*
+%{_mandir}/man1/ecryptfs-verify.1.*
+%{_mandir}/man7/ecryptfs.7.*
+%{_mandir}/man8/ecryptfs-manager.8.*
+%{_mandir}/man8/ecryptfsd.8.*
+%{_mandir}/man8/mount.ecryptfs.8.*
+%{_mandir}/man8/umount.ecryptfs.8.*
+%{_mandir}/man8/ecryptfs-migrate-home.8.*
+%dir %{_datadir}/ecryptfs-utils
+%{_datadir}/ecryptfs-utils/ecryptfs-mount-private.txt
+%{_datadir}/ecryptfs-utils/ecryptfs-record-passphrase
+%{_datadir}/locale/ca/LC_MESSAGES/ecryptfs-utils.mo
 
 %files -n pam_ecryptfs
 /%_lib/security/pam_ecryptfs.so
-%_mandir/man8/pam_ecryptfs.8.*
+%{_mandir}/man8/pam_ecryptfs.8.*
 
 %files -n %libname
-%_libdir/ecryptfs/libecryptfs_key_mod_openssl.so
-%_libdir/ecryptfs/libecryptfs_key_mod_passphrase.so
-%_libdir/libecryptfs.so.%libmajor
-%_libdir/libecryptfs.so.%libmajor.*
+%{_libdir}/ecryptfs/libecryptfs_key_mod_openssl.so
+%{_libdir}/ecryptfs/libecryptfs_key_mod_passphrase.so
+%{_libdir}/libecryptfs.so.%libmajor
+%{_libdir}/libecryptfs.so.%libmajor.*
 
 %files -n %libnamedevel
-%_includedir/ecryptfs.h
-%_libdir/libecryptfs.so
-%_libdir/pkgconfig/libecryptfs.pc
+%{_includedir}/ecryptfs.h
+%{_libdir}/libecryptfs.so
+%{_libdir}/pkgconfig/libecryptfs.pc
 
-%files -n python-%name
+%files -n python-%{name}
 %{py_puresitedir}/%{name}/libecryptfs.py
 %{py_puresitedir}/%{name}/libecryptfs.pyc
 %{py_puresitedir}/%{name}/libecryptfs.pyo
 %{py_platsitedir}/ecryptfs-utils/_libecryptfs.*
 
-
-%changelog
-* Mon Jul 16 2012 Alexander Khrukin <akhrukin@mandriva.org> 99-1
-+ Revision: 809810
-- version update 99
-
-* Fri Feb 24 2012 Alexander Khrukin <akhrukin@mandriva.org> 96-1
-+ Revision: 780135
-- version update 96
-
-* Fri Dec 16 2011 Alexander Khrukin <akhrukin@mandriva.org> 95-1
-+ Revision: 741982
-- la files removed
-- cooker BReq fix
-- version update 95
-
-* Mon May 02 2011 Guillaume Rousse <guillomovitch@mandriva.org> 87-1
-+ Revision: 662315
-- new version
-
-* Wed Nov 03 2010 Michael Scherer <misc@mandriva.org> 83-3mdv2011.0
-+ Revision: 592736
-- rebuild for python 2.7
-
-* Wed Apr 21 2010 Funda Wang <fwang@mandriva.org> 83-2mdv2010.1
-+ Revision: 537321
-- BR glib2
-- fix linkage
-
-* Sat Feb 20 2010 Luis Daniel Lucio Quiroz <dlucio@mandriva.org> 83-1mdv2010.1
-+ Revision: 508607
-- inttool as BR
-- new version
-
-* Fri Nov 06 2009 Frederik Himpe <fhimpe@mandriva.org> 81-1mdv2010.1
-+ Revision: 462020
-- Update to new versio n81
-- Remove --disable-rpath configure option, it's unknown
-- BuildRequires nss-devel now
-- Fix file list
-
-* Sun May 03 2009 Michael Scherer <misc@mandriva.org> 74-1mdv2010.0
-+ Revision: 370957
-- update to new version
-- remove uneeded requires on python-devel
-
-* Thu Mar 05 2009 Jérôme Soyer <saispo@mandriva.org> 71-1mdv2009.1
-+ Revision: 348912
-- New upstream release
-
-* Tue Feb 17 2009 Jérôme Soyer <saispo@mandriva.org> 70-1mdv2009.1
-+ Revision: 341986
-- Fix files section
-- Add BR
-- New upstream release
-
-* Tue Nov 04 2008 Gustavo De Nardin <gustavodn@mandriva.com> 63-1mdv2009.1
-+ Revision: 299761
-- new project Url
-- new version 63 available from new Url
-- include tarball signature for verification
-
-* Tue Nov 04 2008 Gustavo De Nardin <gustavodn@mandriva.com> 61-1mdv2009.1
-+ Revision: 299749
-- buildrequires openssl-devel
-- buildrequires libpam-devel for pam module
-- fixed the Url tag
-- initial Mandriva package of ecryptfs-utils
-- Created package structure for ecryptfs-utils.
 
