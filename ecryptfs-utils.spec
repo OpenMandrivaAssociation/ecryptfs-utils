@@ -8,7 +8,7 @@
 Summary: An Enterprise-class Cryptographic Filesystem for Linux
 Name: ecryptfs-utils
 Version: 103
-Release: 1
+Release: 2
 Source0: http://launchpad.net/ecryptfs/trunk/%{version}\/+download/%{name}_%{version}.orig.tar.gz
 Patch0: ecryptfs-utils_83-fix-link.patch
 License: GPLv2+
