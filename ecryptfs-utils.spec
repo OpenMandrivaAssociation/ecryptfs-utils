@@ -14,6 +14,11 @@ Patch0: ecryptfs-utils_83-fix-link.patch
 License: GPLv2+
 Group: System/Kernel and hardware
 Url: https://launchpad.net/ecryptfs
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires: openssl-devel
 BuildRequires: keyutils-devel
 BuildRequires: libgcrypt-devel
